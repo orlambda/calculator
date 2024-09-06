@@ -171,7 +171,15 @@ function processOperatorInput(c) {
     }
     if (c === "+-") {
         currentOperand.toggleNegative();
-        updateDisplay(formatNumber(currentOperand.value(), currentOperand.decimalPlacesAdded));
+        if (lastProcessed === 0 || lastProcessed === 1) {
+            updateDisplay(formatNumber(currentOperand.value(), currentOperand.decimalPlacesAdded));
+        } else {
+            if (currentOperand.negative) {
+                updateDisplay("-");
+            } else {
+                updateDisplay("+");
+            }
+        }
         return;
     }
     switch (lastProcessed) {
